@@ -1,0 +1,40 @@
+<section>
+    <div class="row mt-4 g-0 w-100 shadow">
+        <div class="col-md-8 d-none d-md-block">
+            <div class="image"></div>
+        </div>
+        <div class="col-md-4">
+            <h2 class="text-center mb-5 display-1 fw-bold">Login</h2>
+            <form [formGroup]="loginForm" class="d-flex flex-column justify-content-center px-4"
+                (ngSubmit)="formLogin(loginForm)">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
+                    <mat-error *ngIf="error('email', 'email')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="error('email', 'required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100 mt-3" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input [type]="hide ? 'password' : 'text'" formControlName="password" type="Password" matInput
+                        placeholder="Ex. pat@example.com">
+                    <mat-error *ngIf="error('password', 'pattern')">
+                        Please enter a valid Password
+                    </mat-error>
+                    <mat-error *ngIf="error('password', 'required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <button [disabled]="loginForm.invalid" class="w-100 fs-5 fw-bold mt-5" mat-stroked-button
+                    color="warn">Login</button>
+            </form>
+        </div>
+    </div>
+</section>

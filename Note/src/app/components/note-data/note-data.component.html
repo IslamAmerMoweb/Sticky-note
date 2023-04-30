@@ -1,0 +1,23 @@
+<section class="p-5 bg-white shadow rounded">
+    <h2 class="display-4 text-center mb-3">Owen Note</h2>
+    <form [formGroup]="noteForm" (ngSubmit)="noteModel()" class="example-form">
+        <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input formControlName="title" matInput placeholder="Ex. note idea">
+            <mat-error *ngIf="error('title', 'required')">
+                title is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Leave a comment</mat-label>
+            <textarea formControlName="desc" matInput placeholder="Ex. It makes me feel..."></textarea>
+            <mat-error *ngIf="error('desc', 'required')">
+                description is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <button class="mt-2" [disabled]="noteForm.invalid" mat-raised-button color="primary" *ngIf="!data">Add
+            Note</button>
+        <button class="mt-2" [disabled]="noteForm.invalid" mat-raised-button color="warn" *ngIf="data">Update
+            note</button>
+    </form>
+</section>

@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md" [ngClass]="_Auth.name?'bgg':'bg-body-tertiary'" data-bs-theme="dark">
+    <div class="container">
+        <h2 class="navbar-brand text-uppercase mb-0 fs-4">note</h2>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown" *ngIf="!_Auth.token">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{menu}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" routerLink="/register" routerLinkActive="bg-danger">Register</a>
+                        </li>
+                        <li><a class="dropdown-item" routerLink="/login" routerLinkActive="bg-danger">Login</a></li>
+                    </ul>
+                </li>
+                <li *ngIf="_Auth.token" class="nav-item">
+                    <a class="nav-link style me-4">Hello {{_Auth.name}}</a>
+                </li>
+                <li *ngIf="_Auth.token" (click)="_Auth.logOut()" class="nav-item clk">
+                    <a class="nav-link"><img src="./assets/logout.png" alt="exit"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

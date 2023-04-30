@@ -1,0 +1,61 @@
+<section class="d-flex justify-content-center align-items-center">
+    <div class="row g-0 w-100 shadow rounded overflow-hidden align-items-center">
+        <div class="col-md-8 d-none d-md-block">
+            <div class="image"></div>
+        </div>
+        <div class="col-md-4">
+            <form class="px-4" [formGroup]="registerForm" (ngSubmit)="getData(registerForm)">
+                <h1 class="display-1 text-center">Register</h1>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input formControlName="first_name" type="text" matInput placeholder="Ex. Ali">
+                    <mat-error *ngIf="get('first_name', 'required')">
+                        First Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input formControlName="last_name" type="text" matInput placeholder="Ex. Maoi">
+                    <mat-error *ngIf="get('last_name', 'required')">
+                        last Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" type="email" matInput placeholder="Ex. pat@Example.com">
+                    <mat-error *ngIf="get('email', 'required')">
+                        email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="get('email', 'email')">
+                        email must be <strong>Ex. pat@Example.com</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>password</mat-label>
+                    <input [type]="hide ? 'password' : 'text'" formControlName="password" type="password" matInput
+                        placeholder="Ex. 1223asA">
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="get('password', 'required')">
+                        password is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="get('password', 'pattern')">
+                        password Minimum eight <strong>characters</strong>:
+                        at least <strong>one letter and one number</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Age</mat-label>
+                    <input min="10" formControlName="age" type="number" matInput placeholder="Ex. 25">
+                    <mat-error *ngIf="get('age', 'required')">
+                        Age is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <button class="w-100 mt-5" [disabled]="registerForm.invalid" mat-raised-button
+                    color="primary">Register</button>
+            </form>
+        </div>
+    </div>
+</section>
